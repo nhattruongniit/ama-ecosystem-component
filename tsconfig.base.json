@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@ama-ecosystem/theme": ["libs/theme/src/index.ts"],
-      "@ama-ecosystem/piano": ["libs/theme/piano/src/index.ts"]
+      "@ama-ecosystem/theme/piano": ["libs/theme/piano/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

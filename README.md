@@ -21,7 +21,7 @@
 $ npx nx run amanotes:serve 
 
 # create react library
-npx nx generate @nx/react:library --name=piano --unitTestRunner=none --bundler=rollup --directory=libs/theme --appProject=amanotes --importPath=@ama-theme/piano --projectNameAndRootFormat=derived --publishable=true --no-interactive
+npx nx generate @nx/react:library --name=theme --unitTestRunner=none --bundler=rollup --directory=libs/theme --appProject=amanotes --importPath=@ama-ecosystem/theme --projectNameAndRootFormat=derived --publishable=true --no-interactive
 
 # publish npm
 ## Go to libs/themes/piano/package.json
@@ -33,14 +33,14 @@ npx nx generate @nx/react:library --name=piano --unitTestRunner=none --bundler=r
 }
 
 ## Build library piano
-$ npx nx run theme-piano:build
+$ npx nx run theme:build
 
 # Registry npm package
-$ npm login (create Organizations ama-theme)
+$ npm login (create Organizations ama-ecosystem)
 
 # publish npm package
-$ cd dist/libs/theme/piano
-$ npm publish
+$ cd dist/libs/theme
+$ npm publish --access=public
 ```
 
 ## Temp

@@ -1,1 +1,0 @@
-export { PianoLayout } from './PianoLayout';

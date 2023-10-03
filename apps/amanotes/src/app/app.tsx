@@ -2,7 +2,7 @@
 
 import NxWelcome from './nx-welcome';
 
-import { PianoLayout } from '@ama-ecosystem/piano';
+import { PianoLayout } from '@ama-ecosystem/theme/piano';
 
 export function App() {
   return (
