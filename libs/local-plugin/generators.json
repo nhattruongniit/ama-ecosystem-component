@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "entry-point": {
+      "factory": "./src/generators/entry-point/generator",
+      "schema": "./src/generators/entry-point/schema.json",
+      "description": "entry-point generator"
+    }
+  }
+}
