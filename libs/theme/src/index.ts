@@ -1,1 +1,1 @@
-export * from './lib/theme';
+export { Piano } from '../piano';
