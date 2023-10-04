@@ -38,7 +38,7 @@ $ npx nx run theme:build
 $ npm login (create Organizations ama-ecosystem)
 
 # publish npm package
-$ cd dist
+$ cd dist/libs/theme
 $ npm publish --access=public
 ```
 

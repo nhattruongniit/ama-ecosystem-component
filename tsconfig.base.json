@@ -19,6 +19,7 @@
       "@ama-ecosystem/components/truong": ["libs/components/truong/index.ts"],
       "@ama-ecosystem/theme": ["libs/theme/src/index.ts"],
       "@ama-ecosystem/theme/piano": ["libs/theme/piano/index.ts"],
+      "@ama-ecosystem/theme/harmonica": ["libs/theme/harmonica/index.ts"],
       "local-plugin": ["libs/local-plugin/src/index.ts"]
     }
   },

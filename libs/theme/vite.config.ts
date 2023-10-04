@@ -34,7 +34,7 @@ export default defineConfig({
       entry: 'src/index.ts',
       name: 'theme',
       // fileName: 'index',
-      fileName: "[name]",
+      fileName: '[name]',
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
@@ -42,7 +42,8 @@ export default defineConfig({
       input: {
         index: 'libs/theme/src/index.ts',
         piano: 'libs/theme/piano/index.ts',
-      }
+        harmonica: 'libs/theme/harmonica/index.ts',
+      },
     },
   },
 });

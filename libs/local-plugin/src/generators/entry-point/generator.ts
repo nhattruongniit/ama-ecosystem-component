@@ -60,10 +60,10 @@ export async function entryPointGenerator(
       const parent = node.parent;
       if (isPropertyAssignment(parent) && parent.name.getText() === 'input') {
         const nodeText = node.getFullText();
-        let withoutBraces = nodeText.slice(2, -1);
+        const withoutBraces = nodeText.slice(2, -1);
         return `{
-${withoutBraces}'${options.name}': 'libs/${options.library}/${options.name}/index.ts',
-}`;
+          ${withoutBraces}'${options.name}': 'libs/${options.library}/${options.name}/index.ts',
+        }`;
       }
     }
   );
