@@ -6,7 +6,7 @@
 
 ## Script
 
-````bash
+```bash
 # create apps
 - Which stack do you want to use?: react
 - What framework would you like to use?: none
@@ -22,41 +22,38 @@ $ npx nx run amanotes:serve
 # create react library
 npx nx generate @nx/react:library --name=theme --unitTestRunner=none --bundler=rollup --directory=libs/theme --appProject=amanotes --importPath=@ama-ecosystem/theme --projectNameAndRootFormat=derived --publishable=true --no-interactive
 
-```shell
-npx nx g local-plugin:library <lib-name>
-````
-
-```shell
-npx nx g local-plugin:entry-point <entry-point-name> --library=<lib-name>
-```
-
 # publish npm
-
 ## Go to libs/themes/piano/package.json
-
 {
-...
-"publishConfig": {
-"access": "public"
-}
+  ...
+  "publishConfig": {
+    "access": "public"
+  }
 }
 
 ## Build library piano
-
 $ npx nx run theme:build
 
 # Registry npm package
-
 $ npm login (create Organizations ama-ecosystem)
 
 # publish npm package
-
 $ cd dist
 $ npm publish --access=public
+```
 
-````
+## Genenrate library
+
+```bash
+# create react library
+npx nx g local-plugin:library <lib-name>
+
+# create react library with entry point
+npx nx g local-plugin:entry-point <entry-point-name> --library=<lib-name>
+```
 
 ## Setup multiple points vite react libraray
+
 ```bash
 # 1. create react library
 npx nx generate @nx/react:library --name=theme --bundler=vite --directory=libs/theme --projectNameAndRootFormat=as-provided --no-interactive --dry-run
@@ -82,7 +79,7 @@ Go to libs/theme/vite.config.ts
   "@ama-ecosystem/theme/piano": ["libs/theme/piano/index.ts"]
 }
 
-````
+```
 
 ## Temp
 
