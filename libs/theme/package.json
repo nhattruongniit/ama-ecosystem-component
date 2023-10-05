@@ -8,16 +8,6 @@
       "import": "./index.mjs",
       "require": "./index.js",
       "types": "./src/index.d.ts"
-    },
-    "./piano": {
-      "import": "./piano.mjs",
-      "require": "./piano.js",
-      "types": "./piano/index.d.ts"
-    },
-    "./harmonica": {
-      "import": "./harmonica.mjs",
-      "require": "./harmonica.js",
-      "types": "./harmonica/index.d.ts"
     }
   }
 }
