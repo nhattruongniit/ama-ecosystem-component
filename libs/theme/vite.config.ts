@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { resolve } from 'path';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/theme',
@@ -25,13 +26,8 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    entry: 'src/index.ts',
-    name: 'theme',
-    fileName: 'index',
-    formats: ['es', 'cjs'],
-    external: ['react', 'react-dom', 'react/jsx-runtime'],
     lib: {
-      entry: 'src/index.ts',
+      entry: resolve(__dirname, 'libs/theme/src/index.ts'),
       name: 'theme',
       // fileName: 'index',
       fileName: '[name]',
@@ -41,8 +37,7 @@ export default defineConfig({
       external: ["'react'", "'react-dom'", "'react/jsx-runtime'"],
       input: {
         index: 'libs/theme/src/index.ts',
-        piano: 'libs/theme/piano/index.ts',
-        harmonica: 'libs/theme/harmonica/index.ts',
+        piano: 'libs/theme/piano/src/index.ts',
       },
     },
   },

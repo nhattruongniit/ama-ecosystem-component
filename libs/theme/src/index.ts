@@ -1,2 +1,1 @@
-export { Piano } from '../piano';
-export { Harmonica } from '../harmonica';
+export { Piano } from '@ama-ecosystem/theme/piano';

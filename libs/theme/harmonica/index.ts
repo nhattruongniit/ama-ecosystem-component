@@ -1,1 +1,0 @@
-export { Harmonica } from './Harmonica';
