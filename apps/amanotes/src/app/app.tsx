@@ -1,5 +1,6 @@
-import { Piano } from '@ama-ecosystem/theme/piano';
 import { Button, Menu } from 'antd';
+
+import { Piano } from '@ama-ecosystem/theme/piano';
 
 function FieldRender() {
   return <div className="text-white">FieldRender</div>;
