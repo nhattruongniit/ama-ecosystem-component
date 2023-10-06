@@ -21,7 +21,6 @@ type IProps = {
   faqItems?: IOptionFQA[];
   dropdownItems?: MenuProps['items'];
   bgColorHeader?: string;
-  bgColorSideBar?: string;
   nameUser?: string;
   avatarUser?: string;
   title?: string;
@@ -41,7 +40,6 @@ export const Piano: React.FC<IProps> = ({
   faqItems,
   dropdownItems,
   bgColorHeader = '#0050B3',
-  bgColorSideBar = '#fff',
   nameUser,
   avatarUser,
   title = 'Amanotes',
@@ -99,13 +97,10 @@ export const Piano: React.FC<IProps> = ({
           collapsible
           collapsed={collapsed}
           className={clsx(
-            'max-w-[256px]',
+            'max-w-[256px] bg-white',
             !collapsed &&
               'w-[256px] border-0 border-r-[1px] border-solid border-[#E0E0E0]'
           )}
-          style={{
-            background: bgColorSideBar,
-          }}
         >
           <div
             className="flex items-center justify-center h-[64px] cursor-pointer"
@@ -119,7 +114,6 @@ export const Piano: React.FC<IProps> = ({
             )}
           </div>
           <Divider className="m-0 dark:border-[#1d1d1d]" />
-
           {MenuItem}
         </Sider>
 
