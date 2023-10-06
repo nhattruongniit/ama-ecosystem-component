@@ -1,28 +1,59 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 
 // antd
-import { Avatar, Button, Dropdown, Layout, MenuProps, Switch } from 'antd';
-
-// components
-import SideBar from './components/SideBar';
+import { Button, Divider, Layout, MenuProps, Switch } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
-const { Header, Content } = Layout;
+// assets
+import AmanotesIcon from './assets/img/amanotes_icon.png';
+
+// components
+import { AccountBar } from './components/AccountBar';
+import { FAQBar } from './components/FAQBar';
+
+// types
+import { IOptionFQA } from './type';
+
+const { Header, Content, Sider } = Layout;
 
 type IProps = {
+  faqItems?: IOptionFQA[];
+  dropdownItems?: MenuProps['items'];
+  bgColorHeader?: string;
+  bgColorSideBar?: string;
+  nameUser?: string;
+  avatarUser?: string;
+  title?: string;
+  // react node
   children: React.ReactNode;
   fieldRender?: React.ReactNode;
-  dropdownItems?: MenuProps['items'];
+  accountRender?: React.ReactNode;
+  faqRender?: React.ReactNode;
+  menuRender?: React.ReactNode;
+  // actions
   onLogout?: () => void;
+  onBackHome?: () => void;
 };
 
 export const Piano: React.FC<IProps> = ({
   // states
+  faqItems,
+  dropdownItems,
+  bgColorHeader = '#0050B3',
+  bgColorSideBar = '#fff',
+  nameUser,
+  avatarUser,
+  title = 'Amanotes',
+  // react node
   children,
   fieldRender,
-  dropdownItems,
+  accountRender,
+  faqRender,
+  menuRender,
   // actions
   onLogout,
+  onBackHome,
 }) => {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
   const [collapsed, setCollapsed] = useState(false);
@@ -42,25 +73,63 @@ export const Piano: React.FC<IProps> = ({
     }
   };
 
-  const items: MenuProps['items'] = dropdownItems || [
-    {
-      key: '1',
-      label: (
-        <div className="cursor-pointer" onClick={onLogout}>
-          Logout
-        </div>
-      ),
-    },
-  ];
+  const ComponentAccountBar = accountRender || (
+    <AccountBar
+      nameUser={nameUser}
+      avatarUser={avatarUser}
+      dropdownItems={dropdownItems}
+      onLogout={onLogout}
+    />
+  );
+
+  const ComponentFieldBar = fieldRender || null;
+  const ComponentFAQBar = faqRender || <FAQBar faqItems={faqItems} />;
+  const MenuItem = menuRender || null;
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <SideBar collapsed={collapsed} colorBgContainer="rgb(255, 255, 255)" />
+      <div
+        className={clsx(
+          'flex flex-col fixed top-0 left-0 h-full bg-white border-0 border-r-[1px]  border-solid border-[#E0E0E0]',
+          !collapsed && 'w-[256px]'
+        )}
+      >
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          className={clsx(
+            'max-w-[256px]',
+            !collapsed &&
+              'w-[256px] border-0 border-r-[1px] border-solid border-[#E0E0E0]'
+          )}
+          style={{
+            background: bgColorSideBar,
+          }}
+        >
+          <div
+            className="flex items-center justify-center h-[64px] cursor-pointer"
+            onClick={onBackHome}
+          >
+            <img src={AmanotesIcon} alt="Amanotes" className="w-[35px]" />
+            {!collapsed && (
+              <div className="mb-0 ml-4 dark:text-white text-[24px] font-bold">
+                {title}
+              </div>
+            )}
+          </div>
+          <Divider className="m-0 dark:border-[#1d1d1d]" />
+
+          {MenuItem}
+        </Sider>
+
+        {!collapsed && ComponentFAQBar}
+      </div>
 
       <Layout style={{ marginLeft: collapsed ? 80 : 256 }}>
         <Header
-          className="p-0 flex items-center justify-between pr-4"
-          style={{ background: '#0050B3' }}
+          className={clsx('p-0 flex items-center justify-between pr-4')}
+          style={{ background: bgColorHeader }}
         >
           <div className="flex items-center">
             <Button
@@ -70,7 +139,7 @@ export const Piano: React.FC<IProps> = ({
               className="text-[16px] w-[64px] h-full text-[#fff]"
             />
 
-            {fieldRender}
+            {ComponentFieldBar}
           </div>
 
           <div>
@@ -82,26 +151,11 @@ export const Piano: React.FC<IProps> = ({
                 defaultChecked={mode === 'dark'}
               />
             </div>
-            <Dropdown
-              className="ml-auto"
-              menu={{ items }}
-              placement="bottomRight"
-            >
-              <div className="flex px-0 py-2 text-sm text-white transition-all ease-nav-brand flex-row items-center cursor-pointer  ml-auto">
-                <div className="relative mr-[10px]">
-                  <Avatar
-                    className="rounded-full"
-                    src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-370-456322.png?f=avif&w=256"
-                    alt="Tony Nguyen"
-                  />
-                </div>
-                <span className="sm:inline pl-2 text-ellipsis">
-                  {'Anonymous'}
-                </span>
-              </div>
-            </Dropdown>
+
+            {ComponentAccountBar}
           </div>
         </Header>
+
         <Content
           style={{
             padding: 26,
