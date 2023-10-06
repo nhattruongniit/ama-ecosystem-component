@@ -11,6 +11,11 @@ const meta: Meta<typeof Piano> = {
   component: Piano,
   title: 'Piano',
   tags: ['autodocs'],
+  parameters: {
+    actions: {
+      handles: ['mouseover', 'click .btn'],
+    },
+  },
   argTypes: {
     title: {
       description: 'Title of header',
@@ -26,8 +31,10 @@ const meta: Meta<typeof Piano> = {
       description: 'FAQ menu',
     },
     onLogout: {
+      action: 'clicked',
+      description: 'Set the handler to handle click event',
       control: {
-        type: 'function',
+        disable: true,
       },
     },
   },
@@ -36,14 +43,6 @@ const meta: Meta<typeof Piano> = {
 export default meta;
 type Story = StoryObj<typeof Piano>;
 
-// export const Primary: Story = (args: any) => <Piano {...args} />;
-// Primary.args = {
-//   title: 'Amanotes',
-//   nameUser: 'tony',
-//   bgColorHeader: '#0050B3',
-//   avatarUser: 'https://i.pravatar.cc/300',
-// };
-
 export const Primary: Story = {
   args: {
     title: 'Amanotes',
@@ -51,7 +50,7 @@ export const Primary: Story = {
     bgColorHeader: '#0050B3',
     avatarUser: 'https://i.pravatar.cc/300',
     onLogout: () => {
-      console.log('logout');
+      alert('Logout');
     },
     faqItems: [
       {
