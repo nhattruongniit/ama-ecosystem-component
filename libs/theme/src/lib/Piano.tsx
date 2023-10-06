@@ -6,7 +6,7 @@ function FieldRender() {
   return <div className="text-white">FieldRender</div>;
 }
 
-const App = () => {
+export function App() {
   return (
     <Piano
       fieldRender={<FieldRender />}
@@ -53,6 +53,6 @@ const App = () => {
       Dashboard
     </Piano>
   );
-};
+}
 
 export default App;
