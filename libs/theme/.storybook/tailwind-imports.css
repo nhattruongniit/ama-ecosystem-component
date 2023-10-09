@@ -1,11 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.sb-show-main.sb-main-padded {
-  padding: 0;
-}
-
-.docs-story .innerZoomElementWrapper > div {
-  border: 0 !important;
-}

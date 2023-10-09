@@ -28,7 +28,7 @@ export function AccountBar({
   return (
     <Dropdown className="ml-auto" menu={{ items }} placement="bottomRight">
       <div className="flex px-0 py-2 text-sm text-white transition-all ease-nav-brand flex-row items-center cursor-pointer  ml-auto">
-        <div className="relative mr-[10px]">
+        <div className="relative">
           <Avatar className="rounded-full" src={avatarUser} alt={nameUser} />
         </div>
         <span className="sm:inline pl-2 text-ellipsis">{nameUser}</span>

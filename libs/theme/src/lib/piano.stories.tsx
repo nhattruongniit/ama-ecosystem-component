@@ -1,41 +1,69 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
+import { action } from '@storybook/addon-actions';
 // import { within } from '@storybook/testing-library';
 // import { expect } from '@storybook/jest';
 
 // theme
 import { Piano } from '@ama-ecosystem/theme/piano';
-import { Button } from 'antd';
+import { Button, Menu } from 'antd';
 
 const meta: Meta<typeof Piano> = {
   component: Piano,
   title: 'Piano',
   tags: ['autodocs'],
   parameters: {
-    actions: {
-      handles: ['mouseover', 'click .btn'],
-    },
+    layout: 'fullscreen',
   },
   argTypes: {
     title: {
-      description: 'Title of header',
+      control: 'text',
+      description: `Title of header  <br /> string`,
+    },
+    nameUser: {
+      control: 'text',
+      description: `Name of user <br /> string`,
     },
     bgColorHeader: {
       control: 'color',
-      description: 'Background color of header',
+      description: 'Background color of header <br /> string',
     },
     avatarUser: {
-      description: 'Avatar of user',
+      control: 'text',
+      description: 'Avatar of user <br /> string',
     },
     faqItems: {
-      description: 'FAQ menu',
+      description: `Menu items <br /> MenuProps['items']`,
+    },
+    dropdownItems: {
+      description: `Dropdown items <br /> MenuProps['items']`,
+    },
+    menuRender: {
+      description: 'Menu render <br /> React.ReactNode',
+      control: 'none',
+    },
+    fieldRender: {
+      description: 'Field render <br /> React.ReactNode',
+      control: 'none',
+    },
+    accountRender: {
+      description: 'Account render <br /> React.ReactNode',
+      control: 'none',
+    },
+    faqRender: {
+      description: 'FAQ render <br /> React.ReactNode',
+      control: 'none',
+    },
+    children: {
+      description: 'Content of Piano <br /> React.ReactNode',
+      control: 'none',
+    },
+    onBackHome: {
+      action: 'clicked',
+      description: 'Set the handler to handle click event <br /> () => void',
     },
     onLogout: {
       action: 'clicked',
-      description: 'Set the handler to handle click event',
-      control: {
-        disable: true,
-      },
+      description: 'Set the handler to handle click event <br /> () => void',
     },
   },
 };
@@ -43,15 +71,32 @@ const meta: Meta<typeof Piano> = {
 export default meta;
 type Story = StoryObj<typeof Piano>;
 
+function MenuRender() {
+  return (
+    <Menu
+      mode="inline"
+      defaultSelectedKeys={['0']}
+      style={{
+        border: 0,
+      }}
+      className="border-0 h-[calc(100vh-300px)] overflow-auto"
+      items={[{ key: 1, label: 'Dashboard' }]}
+    />
+  );
+}
+
+function FieldRender() {
+  return <div className="text-white">FieldRender</div>;
+}
+
 export const Primary: Story = {
   args: {
     title: 'Amanotes',
     nameUser: 'tony',
     bgColorHeader: '#0050B3',
     avatarUser: 'https://i.pravatar.cc/300',
-    onLogout: () => {
-      alert('Logout');
-    },
+    menuRender: <MenuRender />,
+    fieldRender: <FieldRender />,
     faqItems: [
       {
         label: (
@@ -80,6 +125,13 @@ export const Primary: Story = {
         label: <Button type="primary">Report bug</Button>,
       },
     ],
+    dropdownItems: [
+      {
+        key: '1',
+        label: <div className="cursor-pointer">Logout</div>,
+      },
+    ],
+    onLogout: action('clicked'),
   },
 };
 

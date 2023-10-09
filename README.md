@@ -81,6 +81,15 @@ Go to libs/theme/vite.config.ts
 
 ```
 
+## Storybook
+
+https://nx.dev/nx-api/storybook
+
+```bash
+# run storybook http://localhost:4400/
+$ npx nx run project-name:storybook
+```
+
 ## Temp
 
 - Flag: --dry-run: chạy thử command, ko thực sự chạy command
