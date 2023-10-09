@@ -54,7 +54,7 @@ const meta: Meta<typeof Piano> = {
       control: 'none',
     },
     children: {
-      description: 'Content of Piano <br /> React.ReactNode',
+      description: 'Content <br /> React.ReactNode',
       control: 'none',
     },
     onBackHome: {
@@ -132,6 +132,7 @@ export const Primary: Story = {
       },
     ],
     onLogout: action('clicked'),
+    children: 'Content',
   },
 };
 
