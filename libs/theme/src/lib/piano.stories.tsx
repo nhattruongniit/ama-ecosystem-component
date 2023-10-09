@@ -9,7 +9,7 @@ import { Button, Menu } from 'antd';
 
 const meta: Meta<typeof Piano> = {
   component: Piano,
-  title: 'Piano',
+  title: 'Theme Piano',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

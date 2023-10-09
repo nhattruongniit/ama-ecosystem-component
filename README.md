@@ -90,6 +90,15 @@ https://nx.dev/nx-api/storybook
 $ npx nx run project-name:storybook
 ```
 
+## Vercel
+
+```bash
+
+# build storybook
+https://vercel.com/nhattruong1811-gmailcom/ama-ecosystem-component/Hd1eqdjhtTA852kQsiBkfMY4nGXf
+
+```
+
 ## Temp
 
 - Flag: --dry-run: chạy thử command, ko thực sự chạy command
