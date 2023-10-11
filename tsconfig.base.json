@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ama-ecosystem/components": ["libs/components/src/index.ts"],
+      "@ama-ecosystem/components/table": ["libs/components/table/src/index.ts"],
       "@ama-ecosystem/theme": ["libs/theme/src/index.ts"],
       "@ama-ecosystem/theme/piano": ["libs/theme/piano/src/index.ts"],
       "local-plugin": ["libs/local-plugin/src/index.ts"]

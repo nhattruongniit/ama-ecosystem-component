@@ -59,11 +59,11 @@ const meta: Meta<typeof Piano> = {
     },
     onBackHome: {
       action: 'clicked',
-      description: 'Set the handler to handle click event <br /> () => void',
+      description: 'Callback function <br /> () => void',
     },
     onLogout: {
       action: 'clicked',
-      description: 'Set the handler to handle click event <br /> () => void',
+      description: 'Callback function <br /> () => void',
     },
   },
 };

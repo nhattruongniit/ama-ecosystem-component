@@ -1,12 +1,105 @@
-import { Button, Menu } from 'antd';
+import { Button, Menu, Space, Tag } from 'antd';
 
 import { Piano } from '@ama-ecosystem/theme/piano';
+import { BasicTable, useColumnProps } from '@ama-ecosystem/components/table';
+import { ColumnsType } from 'antd/es/table';
+import React from 'react';
 
 function FieldRender() {
   return <div className="text-white">FieldRender</div>;
 }
 
+interface DataType {
+  key: string;
+  name: string;
+  age: number;
+  address: string;
+  tags: string[];
+}
+
+const data: DataType[] = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+    tags: ['nice', 'developer'],
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+    tags: ['loser'],
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sydney No. 1 Lake Park',
+    tags: ['cool', 'teacher'],
+  },
+];
+
 const App = () => {
+  const [dataSource, setDataSource] = React.useState<any>([]);
+  const { getColumnSearchProps, getColumnFilterProps } = useColumnProps({
+    onCallbackSearch: (values) => {
+      console.log('onCallbackSearch: ', values);
+    },
+  });
+
+  React.useEffect(() => {
+    function fetchUser() {
+      fetch(`https://jsonplaceholder.typicode.com/users`)
+        .then((res) => res.json())
+        .then((data) => {
+          setDataSource(data);
+        });
+    }
+    fetchUser();
+  }, []);
+
+  console.log('dataSource: ', dataSource);
+
+  const columns: ColumnsType<DataType> = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      ...getColumnSearchProps('name'),
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Phone',
+      dataIndex: 'phone',
+      key: 'phone',
+      ...getColumnSearchProps('phone'),
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+      ...getColumnFilterProps({
+        name: 'email',
+        options: ['hcm', 'hn'].map((type) => ({
+          text: type,
+          value: type,
+        })),
+      }),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_, record) => (
+        <Space size="middle">
+          <a>Invite {record.name}</a>
+          <a>Delete</a>
+        </Space>
+      ),
+    },
+  ];
+
   return (
     <Piano
       fieldRender={<FieldRender />}
@@ -50,6 +143,8 @@ const App = () => {
         },
       ]}
     >
+      <h2>Table</h2>
+      <BasicTable columns={columns} dataSource={dataSource} />
       Dashboard
     </Piano>
   );

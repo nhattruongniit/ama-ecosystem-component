@@ -1,0 +1,13 @@
+{
+  "name": "@ama-ecosystem/components",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "types": "./src/index.d.ts"
+    }
+  }
+}
