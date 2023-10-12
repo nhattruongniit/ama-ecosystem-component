@@ -68,7 +68,6 @@ const App = () => {
     fetchUser();
   }, [page, pageSize]);
 
-  console.log('pagination: ', pagination);
   const columns: ColumnsType<DataType> = [
     {
       title: 'Title',
