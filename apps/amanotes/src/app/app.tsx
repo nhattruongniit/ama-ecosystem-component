@@ -43,45 +43,50 @@ const data: DataType[] = [
 
 const App = () => {
   const [dataSource, setDataSource] = React.useState<any>([]);
-  const { getColumnSearchProps, getColumnFilterProps } = useColumnProps({
-    onCallbackSearch: (values) => {
-      console.log('onCallbackSearch: ', values);
-    },
-  });
+  const { getColumnSearchProps, getColumnFilterProps, pagination } =
+    useColumnProps({
+      onSearch: (values) => {
+        console.log('onSearch: ', values);
+      },
+      onFilter: (values) => {
+        console.log('onFilter: ', values);
+      },
+    });
+  const page = pagination.currentPage;
+  const pageSize = pagination.pageSize;
 
   React.useEffect(() => {
     function fetchUser() {
-      fetch(`https://jsonplaceholder.typicode.com/users`)
+      fetch(
+        `https://jsonplaceholder.typicode.com/todos?_limit=${pageSize}&_page=${page}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setDataSource(data);
         });
     }
     fetchUser();
-  }, []);
+  }, [page, pageSize]);
 
-  console.log('dataSource: ', dataSource);
-
+  console.log('pagination: ', pagination);
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      ...getColumnSearchProps('name'),
+      title: 'Title',
+      dataIndex: 'title',
+      key: 'title',
+      ...getColumnSearchProps('title'),
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Phone',
-      dataIndex: 'phone',
-      key: 'phone',
-      ...getColumnSearchProps('phone'),
+      title: 'User Id',
+      dataIndex: 'userId',
+      key: 'userId',
+      ...getColumnSearchProps('userId'),
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: 'Id',
       ...getColumnFilterProps({
-        name: 'email',
+        name: 'Id',
         options: ['hcm', 'hn'].map((type) => ({
           text: type,
           value: type,
@@ -144,7 +149,14 @@ const App = () => {
       ]}
     >
       <h2>Table</h2>
-      <BasicTable columns={columns} dataSource={dataSource} />
+      <BasicTable
+        columns={columns}
+        dataSource={dataSource}
+        pagination={{
+          ...pagination.paginationProps,
+          total: 100,
+        }}
+      />
       Dashboard
     </Piano>
   );

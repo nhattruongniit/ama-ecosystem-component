@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ColumnsType } from 'antd/es/table';
-
 export interface IColumnSearchProps {
   name?: string;
 }
@@ -23,11 +21,13 @@ export interface IFilterDropdownProps {
   text: string;
 }
 
-export interface ITableProps {
-  columns: ColumnsType<any>;
-  dataSource: any;
-}
-
 export type IColumnProps = {
-  onCallbackSearch?: (value: IQueryObject) => void;
+  onSearch?: (value: IQueryObject) => void;
+  onFilter?: (value: IQueryObject) => void;
+};
+
+export type IPaginationProps = {
+  total?: number;
+  pageSize?: number;
+  pageSizeOptions?: number[];
 };

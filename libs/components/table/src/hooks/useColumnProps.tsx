@@ -15,8 +15,10 @@ import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
 
 // components
 import { ManualFilterDropdown } from '../filters/ManualFilterDropdown';
+import { usePagination } from './usePagination';
 
-export const useColumnProps = ({ onCallbackSearch }: IColumnProps) => {
+export const useColumnProps = ({ onSearch, onFilter }: IColumnProps) => {
+  // states
   const [activeIcon, setActiveIcon] = React.useState<IActiveTableIcon>(
     [].reduce((acc, curr) => {
       return {
@@ -29,10 +31,14 @@ export const useColumnProps = ({ onCallbackSearch }: IColumnProps) => {
   // refs
   const searchInputRef = React.useRef<any>(null);
   const filtersRef = React.useRef<IQueryObject | null>(null);
+  const searchRef = React.useRef<IQueryObject | null>(null);
+
+  // hooks
+  const pagination = usePagination({});
 
   const _handleSearch = (name: string, selectedKeys: string[]) => {
-    filtersRef.current = {
-      ...filtersRef.current,
+    searchRef.current = {
+      ...searchRef.current,
       [name]: selectedKeys[0],
     };
     // set active icon filter
@@ -41,8 +47,8 @@ export const useColumnProps = ({ onCallbackSearch }: IColumnProps) => {
       [name]: Boolean(selectedKeys[0]),
     }));
 
-    if (onCallbackSearch) {
-      onCallbackSearch(filtersRef.current);
+    if (onSearch) {
+      onSearch(searchRef.current);
     }
   };
 
@@ -61,8 +67,8 @@ export const useColumnProps = ({ onCallbackSearch }: IColumnProps) => {
       return newState;
     });
 
-    if (onCallbackSearch) {
-      onCallbackSearch(filtersRef.current);
+    if (onFilter) {
+      onFilter(filtersRef.current);
     }
   }
 
@@ -172,5 +178,7 @@ export const useColumnProps = ({ onCallbackSearch }: IColumnProps) => {
   return {
     getColumnSearchProps,
     getColumnFilterProps,
+    // pagination
+    pagination,
   };
 };
